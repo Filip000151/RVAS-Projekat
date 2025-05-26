@@ -13,8 +13,8 @@ public class Login : MonoBehaviour
 
     public void LoginUser()
     {
-        DataManager.instance.username = username;
-        DataManager.instance.password = password;
+        //DataManager.instance.username = username;
+        //DataManager.instance.password = password;
 
         //provera za username i password
         if (!DataManager.instance.DbCheck())
@@ -36,9 +36,9 @@ public class Login : MonoBehaviour
 
     public void Register()
     {
-        DataManager.instance.username = username;
-        DataManager.instance.password = password;
-        DataManager.instance.confirmPassword = confirmPassword;
+        //DataManager.instance.username = username;
+        //DataManager.instance.password = password;
+        //DataManager.instance.confirmPassword = confirmPassword;
 
         if (!DataManager.instance.DbCheck())
         {
@@ -53,15 +53,15 @@ public class Login : MonoBehaviour
     }
     public void Username(int id)
     {
-        this.username = u[id].text; 
+        DataManager.instance.username = u[id].text; 
     }
     public void Password(int id)
     {
-        this.password = p[id].text;
+        DataManager.instance.password = p[id].text;
     }
     public void ConfirmPassword()
     {
-        this.confirmPassword = c.text;
+        DataManager.instance.confirmPassword = c.text;
     }
 
     void MenuSetter(int id = 0)
