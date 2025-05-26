@@ -21,16 +21,31 @@ public class DataManager : MonoBehaviour
     public event LoginUser loginUser;
     public string username, password, confirmPassword;
 
+    public bool login, register;
+
     public bool OnUserRegister()
     {
-        registerUser?.Invoke();
-        return registerUser != null;
+        registerUser.Invoke();
+        foreach (RegisterUser handler in registerUser.GetInvocationList())
+        {
+            return handler();
+
+        }
+        return false;
+        //return GetComponent<DatabaseConnector>().RegisterUser();
+
     }
 
     public bool OnUserLogin()
     {
-        loginUser?.Invoke();
-        return loginUser != null;
+        loginUser.Invoke();
+        foreach (LoginUser handler in loginUser.GetInvocationList())
+        {
+            return handler();
+
+        }
+        return false;
+        //return GetComponent<DatabaseConnector>().LoginUser();
     }
     public string errorMessage { get; private set; }
     public void ErrorMessage(string message)
