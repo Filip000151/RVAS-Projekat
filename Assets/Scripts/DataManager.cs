@@ -25,27 +25,26 @@ public class DataManager : MonoBehaviour
 
     public bool OnUserRegister()
     {
-        registerUser.Invoke();
+        if (registerUser == null) return false;
+
         foreach (RegisterUser handler in registerUser.GetInvocationList())
         {
-            return handler();
-
+            return handler(); // poziva samo jednom
         }
-        return false;
-        //return GetComponent<DatabaseConnector>().RegisterUser();
 
+        return false;
     }
 
     public bool OnUserLogin()
     {
-        loginUser.Invoke();
+        if (loginUser == null) return false;
+
         foreach (LoginUser handler in loginUser.GetInvocationList())
         {
-            return handler();
-
+            return handler(); // poziva samo jednom
         }
+
         return false;
-        //return GetComponent<DatabaseConnector>().LoginUser();
     }
     public string errorMessage { get; private set; }
     public void ErrorMessage(string message)

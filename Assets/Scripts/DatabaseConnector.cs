@@ -10,7 +10,7 @@ using MySql.Data.MySqlClient;
 
 public class DatabaseConnector : MonoBehaviour
 {
-
+    private static bool isInitialized = false;
     private string connectionString;
 
     public static string currentPlayer;
@@ -26,6 +26,9 @@ public class DatabaseConnector : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (isInitialized) return;
+        isInitialized = true;
+
         connectionString = "Server=localhost;Database=Unity2D;User ID=root;Pooling=false;";
         DataManager.instance.clearErrorMessage();
 
@@ -96,6 +99,7 @@ public class DatabaseConnector : MonoBehaviour
 
     public bool RegisterUser()
     {
+        Debug.Log("RegisterUser called");
         DataManager.instance.clearErrorMessage();
 
         string username = DataManager.instance.username;
