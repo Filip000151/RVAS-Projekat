@@ -4,7 +4,15 @@ public class DataManager : MonoBehaviour
 {
     #region singleton 
         public static DataManager instance;
-    void Awake() {  instance = this; }
+    void Awake() {
+        if (instance != null) { 
+            Destroy(gameObject);
+            return;
+
+        }
+        instance = this;
+        DontDestroyOnLoad(gameObject);
+    }
 
     #endregion 
 
