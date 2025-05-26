@@ -3,32 +3,81 @@ using UnityEngine;
 
 public class Login : MonoBehaviour
 {
-    [SerializeField] TMP_InputField u;
-    [SerializeField] TMP_InputField p;
+    [SerializeField] TMP_InputField[] u = new TMP_InputField[2];
+    [SerializeField] TMP_InputField[] p = new TMP_InputField[2];
     public string username = "";
     public string password = "";
+    [Space, SerializeField] TextMeshProUGUI errorMessage;
+    public string confirmPassword;
+    [SerializeField] TMP_InputField c;
 
     public void LoginUser()
     {
-        //provera za username i password
-        
-        if(username.Length < 1 || password.Length < 1)
-        {
-            Debug.LogError("You must fill the username and password fields");
-            return;
-        } 
+        DataManager.instance.username = username;
+        DataManager.instance.password = password;
 
-        Transform parent = transform.parent;
-        parent.GetChild(1).gameObject.SetActive(true);
-        gameObject.SetActive(false);
+        //provera za username i password
+        if (!DataManager.instance.DbCheck())
+        {
+            errorMessage.text = DataManager.instance.errorMessage;
+            return;
+        }
+        if (DataManager.instance.OnUserLogin())
+        {
+            MenuSetter(1);
+        }
+
     }
-    public void Username(string username)
+
+    public void RegisterUser()
     {
-        this.username = u.text; 
+        MenuSetter(2);
     }
-    public void Password(string password)
+
+    public void Register()
     {
-        this.password = p.text;
+        DataManager.instance.username = username;
+        DataManager.instance.password = password;
+        DataManager.instance.confirmPassword = confirmPassword;
+
+        if (!DataManager.instance.DbCheck())
+        {
+            errorMessage.text = DataManager.instance.errorMessage;
+            return;
+        }
+        if (DataManager.instance.OnUserRegister())
+        {
+            MenuSetter();
+        }
+   
     }
+    public void Username(int id)
+    {
+        this.username = u[id].text; 
+    }
+    public void Password(int id)
+    {
+        this.password = p[id].text;
+    }
+    public void ConfirmPassword()
+    {
+        this.confirmPassword = c.text;
+    }
+
+    void MenuSetter(int id = 0)
+    {
+        foreach (Transform child in transform)
+        {
+            child.gameObject.SetActive(false);
+        }
+        transform.GetChild(id).gameObject.SetActive(true);
+    }
+
+    public void BackButton()
+    {
+        MenuSetter();
+    }
+
+
     
 }

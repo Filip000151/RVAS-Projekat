@@ -15,7 +15,23 @@ public class DataManager : MonoBehaviour
     }
 
     #endregion 
+    public delegate bool RegisterUser();
+    public event RegisterUser registerUser;
+    public delegate bool LoginUser();
+    public event LoginUser loginUser;
+    public string username, password, confirmPassword;
 
+    public bool OnUserRegister()
+    {
+        registerUser?.Invoke();
+        return registerUser != null;
+    }
+
+    public bool OnUserLogin()
+    {
+        loginUser?.Invoke();
+        return loginUser != null;
+    }
     public string errorMessage { get; private set; }
     public void ErrorMessage(string message)
     {
