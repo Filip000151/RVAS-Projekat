@@ -179,4 +179,40 @@ public class DatabaseConnector : MonoBehaviour
         
     }
 
+    public List<UserData> GetAllUsers()
+    {
+        List<UserData> users = new List<UserData>();
+
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            using (MySqlCommand command = connection.CreateCommand())
+            {
+                command.CommandText = "SELECT Username, Win_count, Lose_count FROM Users";
+
+                using (var reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        users.Add(new UserData
+                        {
+                            username = reader.GetString(0),
+                            winCount = reader.GetInt32(1),
+                            loseCount = reader.GetInt32(2)
+                        });
+                    }
+                }
+            }
+        }
+
+        return users;
+    }
+
+    public class UserData
+    {
+        public string username;
+        public int winCount;
+        public int loseCount;
+    }
+
 }

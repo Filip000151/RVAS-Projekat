@@ -4,6 +4,11 @@ using UnityEngine.SceneManagement;
 
 public class Menu : MonoBehaviour
 {
+    public GameObject mainMenu;
+    public GameObject seeScore;
+    public GameObject allScoresPanel;
+
+
     public void PlayGame()
     {
         SceneManager.LoadSceneAsync(1);
@@ -11,8 +16,27 @@ public class Menu : MonoBehaviour
 
     public void SeeScore()
     {
-        //kasnije prikazuje rezultat
+        mainMenu.SetActive(false);
+        seeScore.SetActive(true);
     }
+
+    public void GoBackToMenu()
+    {
+        mainMenu.SetActive(true);
+        seeScore.SetActive(false);
+    }
+    public void SeeAllScores()
+    {
+        mainMenu.SetActive(false);
+        allScoresPanel.SetActive(true);
+    }
+
+    public void BackFromAllScores()
+    {
+        allScoresPanel.SetActive(false);
+        mainMenu.SetActive(true);
+    }
+
 
     public void Exit()
     {
