@@ -85,6 +85,7 @@ public class DatabaseConnector : MonoBehaviour
                     else
                     {
                         DataManager.instance.login = true;
+                        LoadUserStats();
                         return true;
                     }
                 }
@@ -95,7 +96,31 @@ public class DatabaseConnector : MonoBehaviour
         
     }
 
- 
+    public void LoadUserStats()
+    {
+        string username = DataManager.instance.username;
+
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            using (MySqlCommand command = connection.CreateCommand())
+            {
+                command.CommandText = "SELECT Win_count, Lose_count FROM Users WHERE Username = @Username";
+                command.Parameters.AddWithValue("@Username", username);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    if (reader.Read())
+                    {
+                        DataManager.instance.winCount = reader.GetInt32(0);
+                        DataManager.instance.loseCount = reader.GetInt32(1);
+                    }
+                }
+            }
+        }
+    }
+
+
 
     public bool RegisterUser()
     {

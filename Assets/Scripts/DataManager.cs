@@ -21,6 +21,8 @@ public class DataManager : MonoBehaviour
     public event LoginUser loginUser;
     public string username, password, confirmPassword;
 
+    public int winCount, loseCount;
+
     public bool login, register;
 
     public bool OnUserRegister()
