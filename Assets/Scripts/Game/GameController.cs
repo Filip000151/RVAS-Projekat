@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.PlayerLoop;
 
 public class GameController : MonoBehaviour
 {
@@ -28,9 +29,6 @@ public class GameController : MonoBehaviour
             SetPosition(PlayerWhite[i]);
         }
 
-
-
-
     }
 
     public GameObject Create(string name, int x, int y)
@@ -50,6 +48,30 @@ public class GameController : MonoBehaviour
         Positions[pc.GetXBoard(), pc.GetYBoard()] = obj;
 
         
+    }
+
+    public void SetPositionEmpty(int x, int y)
+    {
+        Positions[x,y] = null;
+
+    }
+
+    public GameObject GetPosition(int x, int y)
+    {
+        return Positions[x, y];
+    }
+
+    public bool PositionOnBoard(int x, int y)
+    {
+        if(x < 0 || y < 0 || x >= Positions.GetLength(0) || y >= Positions.GetLength(1))
+        {
+            return false;
+        }
+        else
+        {
+            return true;
+
+        }
     }
 
 
