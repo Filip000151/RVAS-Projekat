@@ -98,9 +98,10 @@ GameObject:
   - component: {fileID: 5307038419916672186}
   - component: {fileID: 1283384772995659974}
   - component: {fileID: -1195894664153324304}
+  - component: {fileID: -5906159079863445799}
   m_Layer: 0
   m_Name: ChessPiece
-  m_TagString: Untagged
+  m_TagString: ChessPiece
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -192,12 +193,61 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Controller: {fileID: 0}
+  MovePlate: {fileID: 4208338347133063660, guid: 4edb32785c41de04aaa8eb010ab24487, type: 3}
   black_pawn: {fileID: -4341603147912474925, guid: 14dd49c80b9f3e14e96e39c05cf355d5, type: 3}
   black_bishop: {fileID: -6414592721767173361, guid: 2d4cae057c043c64e9885327e83f03ae, type: 3}
   black_king: {fileID: -641104846605737351, guid: b432f36aae65d0749a6bd20e45302f89, type: 3}
   white_pawn: {fileID: 5580225292014371162, guid: c508092dd1bd486438dae39bd9c2538d, type: 3}
   white_bishop: {fileID: -6656611866369706910, guid: 8d6a384ab9ca49340ac2cde4ffdb18d1, type: 3}
   white_king: {fileID: -3792998861040722889, guid: 4581357e148ddb84ca10bbdc79ceb08e, type: 3}
+  attack: 0
+  health: 0
+--- !u!61 &-5906159079863445799
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2733715997652663839}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.37, y: 0.65}
+    newSize: {x: 0.37, y: 0.65}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 0.37, y: 0.65}
+  m_EdgeRadius: 0
 --- !u!1 &3469521173507923354
 GameObject:
   m_ObjectHideFlags: 0
@@ -295,6 +345,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4692357465207527439}
   - component: {fileID: 6785761028633775018}
+  - component: {fileID: 5093109356277383589}
   m_Layer: 0
   m_Name: Attack
   m_TagString: Untagged
@@ -372,6 +423,30 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5093109356277383589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5396544171798682628}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd19472ac238a3d49a07204e87f0a95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Numbers:
+  - {fileID: 5612462023952475940, guid: 33b3b0ae95ea2b14a9f3f3dadf976d75, type: 3}
+  - {fileID: -2977308881495069812, guid: 2ccd304b21650904ea2e72d9eb154ab6, type: 3}
+  - {fileID: -8287682025750451206, guid: a66f7a19ddd22314390d08131b443f8e, type: 3}
+  - {fileID: 1496512291469206003, guid: 37213db13bf9fcd4a9277f9093bb82a1, type: 3}
+  - {fileID: -4328484817977694166, guid: adbcce94573f7914da3cb24572751aab, type: 3}
+  - {fileID: 608290697324377998, guid: 0ced44d6b9a43524ea662af0cbeed920, type: 3}
+  - {fileID: 1780956926924026479, guid: 0a741cbd6766b5541a449c1840112649, type: 3}
+  - {fileID: 6073675948771137343, guid: 15001ebf1842f6443ae19f3ef5d33226, type: 3}
+  - {fileID: 3605109471985692320, guid: 2561c13da2912084299b18e7accf9cfe, type: 3}
+  - {fileID: -5931895020909620196, guid: 9d32ce5fb77d7b94ea7388cbad55a126, type: 3}
+  ChessPiece: {fileID: 0}
 --- !u!1 &7603410721920365170
 GameObject:
   m_ObjectHideFlags: 0
@@ -382,6 +457,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3276306460857316494}
   - component: {fileID: 2854966261106520066}
+  - component: {fileID: 5835437429950466602}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -459,3 +535,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &5835437429950466602
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7603410721920365170}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd19472ac238a3d49a07204e87f0a95e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Numbers:
+  - {fileID: 5088316998373936774, guid: bef9c6afd27075544936372614413177, type: 3}
+  - {fileID: -855298285791758126, guid: a4ac45b979ecd6048a65376af285abbc, type: 3}
+  - {fileID: 6937817954938267909, guid: 790e16a608b559c449dbb3c058b2d1ef, type: 3}
+  - {fileID: -6470460504253458178, guid: 970d6ebcfb9241541b224cbf6a8d5d27, type: 3}
+  - {fileID: -4178046375966092550, guid: b4b60dd7fe917824d9637841318ebb35, type: 3}
+  - {fileID: 4130640169021434097, guid: 81efbec966efd2b4294b26dd84905977, type: 3}
+  - {fileID: 3465286685962602723, guid: 9ec399ec313a8414a8f2a1fb2ac3f35e, type: 3}
+  - {fileID: 7028616704906629411, guid: 042dd5dc5ddc06e489cb4cbdbb54d1d3, type: 3}
+  - {fileID: 8288426215254106694, guid: d543ac1593a120a4c90da36df5ff6a42, type: 3}
+  - {fileID: 4113829005332862926, guid: a6b458b4d40b81c449e5e3a90c1f9df3, type: 3}
+  ChessPiece: {fileID: 0}
