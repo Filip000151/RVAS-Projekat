@@ -40,12 +40,12 @@ public class MovePlate : MonoBehaviour
                 Controller.GetComponent<GameController>().SetPositionEmpty(ChessPiece.GetComponent<PieceController>().GetXBoard(), ChessPiece.GetComponent<PieceController>().GetYBoard());
                 Controller.GetComponent<GameController>().SetPositionEmpty(Reference.GetComponent<PieceController>().GetXBoard(), Reference.GetComponent<PieceController>().GetYBoard());
 
-                if ((ChessPiece.name == "white_king" || ChessPiece.name == "black_king") && (Reference.name == "black_king" || Reference.name == "white_king"))
+                if ((ChessPiece.name == "red_king" || ChessPiece.name == "blue_king") && (Reference.name == "blue_king" || Reference.name == "red_king"))
                     Controller.GetComponent<GameController>().Winner("Draw");
-                else if (ChessPiece.name == "white_king") Controller.GetComponent<GameController>().Winner("black");
-                else if (ChessPiece.name == "black_king") Controller.GetComponent<GameController>().Winner("white");
-                else if (Reference.name == "white_king") Controller.GetComponent<GameController>().Winner("black");
-                else if (Reference.name == "black_king") Controller.GetComponent<GameController>().Winner("white");
+                else if (ChessPiece.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
+                else if (ChessPiece.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
+                else if (Reference.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
+                else if (Reference.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
             }
             else if (ChessPiece.GetComponent<PieceController>().health <= 0)
             {
@@ -62,8 +62,8 @@ public class MovePlate : MonoBehaviour
 
                 Reference.GetComponent<PieceController>().DestroyMovePlates();
 
-                if (ChessPiece.name == "white_king") Controller.GetComponent<GameController>().Winner("black");
-                else if (ChessPiece.name == "black_king") Controller.GetComponent<GameController>().Winner("white");
+                if (ChessPiece.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
+                else if (ChessPiece.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
             }
             else if (Reference.GetComponent<PieceController>().health <= 0)
             {
@@ -73,8 +73,8 @@ public class MovePlate : MonoBehaviour
 
                 Controller.GetComponent<GameController>().SetPositionEmpty(Reference.GetComponent<PieceController>().GetXBoard(), Reference.GetComponent<PieceController>().GetYBoard());
 
-                if (Reference.name == "white_king") Controller.GetComponent<GameController>().Winner("black");
-                else if (Reference.name == "black_king") Controller.GetComponent<GameController>().Winner("white");
+                if (Reference.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
+                else if (Reference.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
             }
             else
             {

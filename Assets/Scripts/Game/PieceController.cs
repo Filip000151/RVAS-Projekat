@@ -8,8 +8,8 @@ public class PieceController : MonoBehaviour
     private int xBoard = -1;
     private int yBoard = -1;
 
-    public Sprite black_pawn, black_bishop, black_king;
-    public Sprite white_pawn, white_bishop, white_king;
+    public Sprite blue_pawn, blue_bishop, blue_king;
+    public Sprite red_pawn, red_bishop, red_king;
 
     private string player;
 
@@ -27,39 +27,45 @@ public class PieceController : MonoBehaviour
 
         switch (this.name)
         {
-            case "black_pawn":
-                this.GetComponent<SpriteRenderer>().sprite = black_pawn;
-                player = "black";
+            case "blue_pawn":
+                this.GetComponent<SpriteRenderer>().sprite = blue_pawn;
+                this.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                player = "blue";
                 attack = 2;
                 health = 3;
                 break;
-            case "black_bishop":
-                this.GetComponent<SpriteRenderer>().sprite = black_bishop;
-                player = "black";
+            case "blue_bishop":
+                this.GetComponent<SpriteRenderer>().sprite = blue_bishop;
+                this.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                player = "blue";
                 attack = 3;
                 health = 4;
                 break;
-            case "black_king":
-                this.GetComponent <SpriteRenderer>().sprite = black_king;
-                player = "black";
+            case "blue_king":
+                this.GetComponent <SpriteRenderer>().sprite = blue_king;
+                this.GetComponent<SpriteRenderer>().color = new Color(0.0f, 0.0f, 1.0f, 1.0f);
+                player = "blue";
                 attack = 2;
                 health = 8;
                 break;
-            case "white_pawn":
-                this.GetComponent<SpriteRenderer>().sprite = white_pawn;
-                player = "white";
+            case "red_pawn":
+                this.GetComponent<SpriteRenderer>().sprite = red_pawn;
+                this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                player = "red";
                 attack = 2;
                 health = 3;
                 break;
-            case "white_bishop":
-                this.GetComponent<SpriteRenderer>().sprite = white_bishop;
-                player = "white";
+            case "red_bishop":
+                this.GetComponent<SpriteRenderer>().sprite = red_bishop;
+                this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                player = "red";
                 attack = 3;
                 health = 4;
                 break;
-            case "white_king":
-                this.GetComponent<SpriteRenderer>().sprite = white_king;
-                player = "white";
+            case "red_king":
+                this.GetComponent<SpriteRenderer>().sprite = red_king;
+                this.GetComponent<SpriteRenderer>().color = new Color(1.0f, 0.0f, 0.0f, 1.0f);
+                player = "red";
                 attack = 2;
                 health = 8;
                 break;
@@ -122,22 +128,22 @@ public class PieceController : MonoBehaviour
     {
         switch (this.name)
         {
-            case "black_pawn":
+            case "blue_pawn":
                 PawnMovePlate(xBoard, yBoard - 1);
                 PawnMovePlate(xBoard + 1, yBoard - 1);
                 PawnMovePlate(xBoard - 1, yBoard - 1);
                 break;
-            case "white_pawn":
+            case "red_pawn":
                 PawnMovePlate(xBoard, yBoard + 1);
                 PawnMovePlate(xBoard + 1, yBoard + 1);
                 PawnMovePlate(xBoard - 1, yBoard + 1);
                 break;
-            case "black_bishop":
-            case "white_bishop":
+            case "blue_bishop":
+            case "red_bishop":
                 LMovePlate();
                 break;
-            case "black_king":
-            case "white_king":
+            case "blue_king":
+            case "red_king":
                 SurroundMovePlate();
                 break;
         }

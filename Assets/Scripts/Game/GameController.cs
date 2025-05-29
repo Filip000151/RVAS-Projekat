@@ -7,10 +7,10 @@ public class GameController : MonoBehaviour
 {
     public GameObject ChessPiece;
     private GameObject[,] Positions = new GameObject[7, 7];
-    private GameObject[] PlayerBlack = new GameObject[7];
-    private GameObject[] PlayerWhite = new GameObject[7];
+    private GameObject[] PlayerBlue = new GameObject[7];
+    private GameObject[] PlayerRed = new GameObject[7];
 
-    private string CurrentPlayer = "white";
+    private string CurrentPlayer = "red";
 
     private bool TurnInProgress = true;
     private bool TurnFinished = false;
@@ -23,20 +23,20 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
-        PlayerWhite = new GameObject[]
+        PlayerRed = new GameObject[]
         {
-            Create("white_pawn",0,0),Create("white_pawn",1,0),Create("white_bishop",2,0),Create("white_king",3,0),Create("white_bishop",4,0),Create("white_pawn",5,0),Create("white_pawn",6,0)
+            Create("red_pawn",0,0),Create("red_pawn",1,0),Create("red_bishop",2,0),Create("red_king",3,0),Create("red_bishop",4,0),Create("red_pawn",5,0),Create("red_pawn",6,0)
         };
 
-        PlayerBlack = new GameObject[]
+        PlayerBlue = new GameObject[]
         {
-            Create("black_pawn",0,6),Create("black_pawn",1,6),Create("black_bishop",2,6),Create("black_king",3,6),Create("black_bishop",4,6),Create("black_pawn",5,6),Create("black_pawn",6,6)
+            Create("blue_pawn",0,6),Create("blue_pawn",1,6),Create("blue_bishop",2,6),Create("blue_king",3,6),Create("blue_bishop",4,6),Create("blue_pawn",5,6),Create("blue_pawn",6,6)
         };
 
-        for(int i = 0; i<PlayerBlack.Length; i++)
+        for(int i = 0; i<PlayerBlue.Length; i++)
         {
-            SetPosition(PlayerBlack[i]);
-            SetPosition(PlayerWhite[i]);
+            SetPosition(PlayerBlue[i]);
+            SetPosition(PlayerRed[i]);
         }
         UpdateTurnText();
     }
@@ -96,13 +96,13 @@ public class GameController : MonoBehaviour
 
     public void NextTurn()
     {
-        if(CurrentPlayer == "white")
+        if(CurrentPlayer == "red")
         {
-            CurrentPlayer = "black";
+            CurrentPlayer = "blue";
         }
         else
         {
-            CurrentPlayer = "white";
+            CurrentPlayer = "red";
         }
     }
     public void Update()
