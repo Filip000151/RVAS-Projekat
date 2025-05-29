@@ -110,7 +110,7 @@ public class GameController : MonoBehaviour
         if(GameOver == true && Input.GetMouseButtonDown(0))
         {
             GameOver = false;
-            SceneManager.LoadScene("Game");
+            SceneManager.LoadScene("Menu");
 
         }
     }
