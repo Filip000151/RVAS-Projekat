@@ -1,4 +1,6 @@
 using UnityEngine;
+using TMPro;
+using UnityEngine.SceneManagement;
 using UnityEngine.PlayerLoop;
 
 public class GameController : MonoBehaviour
@@ -9,6 +11,14 @@ public class GameController : MonoBehaviour
     private GameObject[] PlayerWhite = new GameObject[7];
 
     private string CurrentPlayer = "white";
+
+    private bool TurnInProgress = true;
+    private bool TurnFinished = false;
+    private bool GameOver = false;
+
+    public TextMeshProUGUI TurnText;
+
+
 
 
     void Start()
@@ -28,7 +38,7 @@ public class GameController : MonoBehaviour
             SetPosition(PlayerBlack[i]);
             SetPosition(PlayerWhite[i]);
         }
-
+        UpdateTurnText();
     }
 
     public GameObject Create(string name, int x, int y)
@@ -74,8 +84,90 @@ public class GameController : MonoBehaviour
         }
     }
 
+    public string GetCurrentPlayer()
+    {
+        return CurrentPlayer;
+    }
+
+    public bool IsGameOver()
+    {
+        return GameOver;
+    }
+
+    public void NextTurn()
+    {
+        if(CurrentPlayer == "white")
+        {
+            CurrentPlayer = "black";
+        }
+        else
+        {
+            CurrentPlayer = "white";
+        }
+    }
+    public void Update()
+    {
+        if(GameOver == true && Input.GetMouseButtonDown(0))
+        {
+            GameOver = false;
+            SceneManager.LoadScene("Game");
+
+        }
+    }
+
+    public void Winner(string PlayerWinner)
+    {
+        GameOver = true;
+        GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().enabled = true;
+        if(PlayerWinner != "Draw")
+        {
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = PlayerWinner + " is the winner!";
+
+        }
+        else
+        {
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = PlayerWinner;
+        }
+        GameObject.FindGameObjectWithTag("EndText").GetComponent<TextMeshProUGUI>().enabled = true;
+    }
+
+    public bool HasTurnFinished()
+    {
+        return TurnFinished;
+    }
+
+    public void StartTurn()
+    {
+        TurnFinished = false;
+    }
+
+    public bool IsTurnInProgress()
+    {
+        return TurnInProgress;
+    }
+
+    public void EndTurn()
+    {
+        NextTurn();
+        UpdateTurnText();
+
+        GameObject[] AllPieces = GameObject.FindGameObjectsWithTag("ChessPiece");
+        foreach (GameObject piece in AllPieces)
+        {
+            PieceController pc = piece.GetComponent<PieceController>();
+            if(pc != null && pc.GetPlayer() != CurrentPlayer)
+            {
+                pc.HasMovedThisTurn = false;
+
+            }
+        }
+    }
+
+    private void UpdateTurnText()
+    {
+        TurnText.text = $"{CurrentPlayer}'s turn:";
+    }
 
 
-    
-    
+
 }

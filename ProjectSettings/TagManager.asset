@@ -6,6 +6,9 @@ TagManager:
   tags:
   - MovePlate
   - ChessPiece
+  - WinnerText
+  - TurnText
+  - EndText
   layers:
   - Default
   - TransparentFX

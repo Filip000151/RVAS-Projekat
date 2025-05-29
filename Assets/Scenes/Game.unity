@@ -132,11 +132,11 @@ GameObject:
   - component: {fileID: 58381430}
   m_Layer: 5
   m_Name: Winner Text
-  m_TagString: Untagged
+  m_TagString: WinnerText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &58381429
 RectTransform:
   m_ObjectHideFlags: 0
@@ -300,6 +300,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ChessPiece: {fileID: 2733715997652663839, guid: c2f82d9bb38882e49b24bbf34e774f71, type: 3}
+  TurnText: {fileID: 1496296504}
 --- !u!1 &217021288
 GameObject:
   m_ObjectHideFlags: 0
@@ -699,6 +700,7 @@ GameObject:
   - component: {fileID: 937183526}
   - component: {fileID: 937183525}
   - component: {fileID: 937183524}
+  - component: {fileID: 937183527}
   m_Layer: 5
   m_Name: End Turn Button
   m_TagString: Untagged
@@ -769,7 +771,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 937183525}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 937183527}
+        m_TargetAssemblyTypeName: TurnButton, Assembly-CSharp
+        m_MethodName: OnEndTurnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &937183525
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -808,6 +822,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 937183522}
   m_CullTransparentMesh: 1
+--- !u!114 &937183527
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 937183522}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c3ef519a170c97a4abfd63f465d83c1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gc: {fileID: 100713865}
 --- !u!1 &1382437254
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1089,7 @@ GameObject:
   - component: {fileID: 1496296504}
   m_Layer: 5
   m_Name: Turn Text
-  m_TagString: Untagged
+  m_TagString: TurnText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1133,15 +1160,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1197,12 +1224,12 @@ GameObject:
   - component: {fileID: 1676694512}
   - component: {fileID: 1676694511}
   m_Layer: 5
-  m_Name: Main Menu Text
-  m_TagString: Untagged
+  m_Name: End Text
+  m_TagString: EndText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1676694510
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1219,7 +1246,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 716, y: -362}
+  m_AnchoredPosition: {x: 716, y: -401}
   m_SizeDelta: {x: 327.9, y: 160.06}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1676694511
@@ -1242,7 +1269,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 
+  m_text: Click to go back to menu
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -1269,15 +1296,15 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
-  m_fontSizeBase: 36
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
-  m_HorizontalAlignment: 1
-  m_VerticalAlignment: 256
+  m_fontStyle: 1
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
   m_textAlignment: 65535
   m_characterSpacing: 0
   m_wordSpacing: 0
@@ -1307,7 +1334,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 0, y: -125.07793, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0

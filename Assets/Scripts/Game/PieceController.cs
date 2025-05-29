@@ -16,6 +16,8 @@ public class PieceController : MonoBehaviour
     public int attack;
     public int health;
 
+    public bool HasMovedThisTurn = false;
+
 
     public void Activate()
     {
@@ -99,9 +101,12 @@ public class PieceController : MonoBehaviour
 
     public void OnMouseUp()
     {
-        DestroyMovePlates();
-
-        InitializeMovePlates();
+        GameController gc = Controller.GetComponent<GameController>();
+        if (!gc.IsGameOver() && gc.GetCurrentPlayer() == player && !HasMovedThisTurn && gc.IsTurnInProgress())
+        {
+            DestroyMovePlates();
+            InitializeMovePlates();
+        }
     }
 
     public void DestroyMovePlates()
