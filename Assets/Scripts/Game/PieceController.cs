@@ -240,7 +240,7 @@ public class PieceController : MonoBehaviour
         x -= 3.84f;
         y -= 3.84f;
 
-        GameObject mp = Instantiate(MovePlate, new Vector3(x, y, -1.0f), Quaternion.identity);
+        GameObject mp = Instantiate(MovePlate, new Vector3(x, y, -3.0f), Quaternion.identity);
 
         MovePlate mpScript = mp.GetComponent<MovePlate>();
         mpScript.AttackMode = true;

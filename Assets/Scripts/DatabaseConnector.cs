@@ -86,6 +86,7 @@ public class DatabaseConnector : MonoBehaviour
                     {
                         DataManager.instance.login = true;
                         LoadUserStats();
+                        currentPlayer = DataManager.instance.username;
                         return true;
                     }
                 }
@@ -124,7 +125,6 @@ public class DatabaseConnector : MonoBehaviour
 
     public bool RegisterUser()
     {
-        Debug.Log("RegisterUser called");
         DataManager.instance.clearErrorMessage();
 
         string username = DataManager.instance.username;
@@ -143,7 +143,6 @@ public class DatabaseConnector : MonoBehaviour
         }
         if (!string.IsNullOrEmpty(DataManager.instance.errorMessage))
         {
-            Debug.Log(DataManager.instance.errorMessage);
             DataManager.instance.register = false;
             return false;
         }
@@ -165,6 +164,7 @@ public class DatabaseConnector : MonoBehaviour
                 {
                     command.ExecuteNonQuery();
                     DataManager.instance.register = true;
+                    currentPlayer = DataManager.instance.username;
                     return true;
                 }
                 catch(MySqlException e) 
@@ -207,6 +207,28 @@ public class DatabaseConnector : MonoBehaviour
 
         return users;
     }
+
+    private void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        if(scene.name == "Menu" && !string.IsNullOrEmpty(currentPlayer))
+        {
+            LoadUserStats();
+        }
+    }
+
+    
+
+
 
     public class UserData
     {

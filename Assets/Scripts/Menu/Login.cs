@@ -11,27 +11,38 @@ public class Login : MonoBehaviour
     public string confirmPassword;
     [SerializeField] TMP_InputField c;
 
+    public void Start()
+    {
+        if(DatabaseConnector.currentPlayer != null)
+        {
+            MenuSetter(1);
+        }
+    }
+
     public void LoginUser()
     {
         //DataManager.instance.username = username;
         //DataManager.instance.password = password;
 
         //provera za username i password
-        if (!DataManager.instance.DbCheck())
-        {
-            errorMessage.text = DataManager.instance.errorMessage;
-            return;
-        }
+        DataManager.instance.clearErrorMessage();
+
+        errorMessage.text = "";
+
         if (DataManager.instance.OnUserLogin())
         {
             MenuSetter(1);
+        }
+        else
+        {
+            errorMessage.text = DataManager.instance.errorMessage;
         }
 
     }
 
     public void RegisterUser()
     {
-        MenuSetter(2);
+        MenuSetter(3);
     }
 
     public void Register()
@@ -40,14 +51,16 @@ public class Login : MonoBehaviour
         //DataManager.instance.password = password;
         //DataManager.instance.confirmPassword = confirmPassword;
 
-        if (!DataManager.instance.DbCheck())
-        {
-            errorMessage.text = DataManager.instance.errorMessage;
-            return;
-        }
+        DataManager.instance.clearErrorMessage();
+        errorMessage.text = "";
+
         if (DataManager.instance.OnUserRegister())
         {
-            MenuSetter();
+            MenuSetter(1);
+        }
+        else
+        {
+            errorMessage.text = DataManager.instance.errorMessage;
         }
    
     }
