@@ -265,6 +265,7 @@ GameObject:
   m_Component:
   - component: {fileID: 100713864}
   - component: {fileID: 100713865}
+  - component: {fileID: 100713866}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -301,6 +302,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ChessPiece: {fileID: 2733715997652663839, guid: c2f82d9bb38882e49b24bbf34e774f71, type: 3}
   TurnText: {fileID: 1496296504}
+--- !u!114 &100713866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 100713863}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 654cdc3df66fc554396bcd2845958511, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  username_field: {fileID: 0}
+  password_field: {fileID: 0}
+  errorMsg: {fileID: 0}
+  usernameMsg: {fileID: 0}
+  passwordMsg: {fileID: 0}
 --- !u!1 &217021288
 GameObject:
   m_ObjectHideFlags: 0

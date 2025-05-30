@@ -2,6 +2,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.SceneManagement;
 using UnityEngine.PlayerLoop;
+using MySql.Data.MySqlClient;
 
 public class GameController : MonoBehaviour
 {
@@ -18,11 +19,13 @@ public class GameController : MonoBehaviour
 
     public TextMeshProUGUI TurnText;
 
+    private string connectionString;
 
 
 
     void Start()
     {
+        connectionString = "Server=localhost;Database=Unity2D;User ID=root;Pooling=false;";
         PlayerRed = new GameObject[]
         {
             Create("red_pawn",0,0),Create("red_pawn",1,0),Create("red_bishop",2,0),Create("red_king",3,0),Create("red_bishop",4,0),Create("red_pawn",5,0),Create("red_pawn",6,0)
@@ -119,9 +122,37 @@ public class GameController : MonoBehaviour
     {
         GameOver = true;
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().enabled = true;
-        if(PlayerWinner != "Draw")
+        if(PlayerWinner == "red")
         {
             GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = PlayerWinner + " is the winner!";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE users SET Win_count = Win_count + 1 WHERE Username = @username";
+                    command.Parameters.AddWithValue("@username", DatabaseConnector.currentPlayer);
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+
+        }
+        else if(PlayerWinner == "blue")
+        {
+            GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = PlayerWinner + " is the winner!";
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
+            {
+                connection.Open();
+                using (MySqlCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = "UPDATE users SET Lose_count = Lose_count + 1 WHERE Username = @username";
+                    command.Parameters.AddWithValue("@username", DatabaseConnector.currentPlayer);
+                    command.ExecuteNonQuery();
+                }
+                connection.Close();
+            }
+
 
         }
         else
@@ -129,6 +160,7 @@ public class GameController : MonoBehaviour
             GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().text = PlayerWinner;
         }
         GameObject.FindGameObjectWithTag("EndText").GetComponent<TextMeshProUGUI>().enabled = true;
+
     }
 
     public bool HasTurnFinished()
