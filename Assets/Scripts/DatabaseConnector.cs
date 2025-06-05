@@ -136,7 +136,23 @@ public class DatabaseConnector : MonoBehaviour
             DataManager.instance.ErrorMessage("You must fill username and password!");
         }
 
-        if(confirmPassword != password)
+        using (MySqlConnection connection = new MySqlConnection(connectionString))
+        {
+            connection.Open();
+            using (MySqlCommand command = connection.CreateCommand())
+            {
+                command.CommandText = "SELECT COUNT(*) FROM users WHERE Username = @Username";
+                command.Parameters.AddWithValue("@Username", username);
+                var result = Convert.ToInt32(command.ExecuteScalar());
+
+                if (result >= 1)
+                {
+                    DataManager.instance.ErrorMessage("Username already registered!");
+                }
+            }
+        }
+
+        if (confirmPassword != password)
         {
             DataManager.instance.ErrorMessage("Passwords must match!");
             
@@ -175,8 +191,10 @@ public class DatabaseConnector : MonoBehaviour
                 }
             }
         }
+
         
-        
+
+
     }
 
     public List<UserData> GetAllUsers()
