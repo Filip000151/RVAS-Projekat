@@ -46,6 +46,7 @@ public class MovePlate : MonoBehaviour
                 else if (ChessPiece.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
                 else if (Reference.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
                 else if (Reference.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
+                else Controller.GetComponent<GameController>().PlayPieceDestroyedSound();
             }
             else if (ChessPiece.GetComponent<PieceController>().health <= 0)
             {
@@ -64,6 +65,7 @@ public class MovePlate : MonoBehaviour
 
                 if (ChessPiece.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
                 else if (ChessPiece.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
+                else Controller.GetComponent<GameController>().PlayPieceDestroyedSound();
             }
             else if (Reference.GetComponent<PieceController>().health <= 0)
             {
@@ -75,16 +77,20 @@ public class MovePlate : MonoBehaviour
 
                 if (Reference.name == "red_king") Controller.GetComponent<GameController>().Winner("blue");
                 else if (Reference.name == "blue_king") Controller.GetComponent<GameController>().Winner("red");
+                else Controller.GetComponent<GameController>().PlayPieceDestroyedSound();
             }
             else
             {
                 Reference.GetComponent<PieceController>().DestroyMovePlates();
+                Controller.GetComponent<GameController>().PlayPunchSound();
                 Reference.GetComponent<PieceController>().HasMovedThisTurn = true;
             }
         }
         else
         {
             Controller.GetComponent<GameController>().SetPositionEmpty(Reference.GetComponent<PieceController>().GetXBoard(), Reference.GetComponent<PieceController>().GetYBoard());
+
+            Controller.GetComponent<GameController>().PlayPieceMovedSound();
 
             Reference.GetComponent<PieceController>().SetXBoard(matrixX);
             Reference.GetComponent<PieceController>().SetYBoard(matrixY);

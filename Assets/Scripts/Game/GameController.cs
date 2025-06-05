@@ -21,10 +21,20 @@ public class GameController : MonoBehaviour
 
     private string connectionString;
 
+    private AudioSource AudioSrc;
+    public AudioClip PieceDestroyedSnd;
+    public AudioClip PieceMovedSnd;
+    public AudioClip PunchSnd;
+
+    public AudioClip EndTurnSnd;
+    public AudioClip VictorySnd;
+
 
 
     void Start()
     {
+        AudioSrc = GetComponent<AudioSource>();
+
         connectionString = "Server=localhost;Database=Unity2D;User ID=root;Pooling=false;";
         PlayerRed = new GameObject[]
         {
@@ -121,6 +131,7 @@ public class GameController : MonoBehaviour
     public void Winner(string PlayerWinner)
     {
         GameOver = true;
+        PlayVictorySound();
         GameObject.FindGameObjectWithTag("WinnerText").GetComponent<TextMeshProUGUI>().enabled = true;
         if(PlayerWinner == "red")
         {
@@ -182,6 +193,7 @@ public class GameController : MonoBehaviour
     {
         NextTurn();
         UpdateTurnText();
+        PlayEndTurnSound();
 
         GameObject[] AllPieces = GameObject.FindGameObjectsWithTag("ChessPiece");
         foreach (GameObject piece in AllPieces)
@@ -198,6 +210,31 @@ public class GameController : MonoBehaviour
     private void UpdateTurnText()
     {
         TurnText.text = $"{CurrentPlayer}'s turn:";
+    }
+
+    public void PlayPieceDestroyedSound()
+    {
+        AudioSrc.PlayOneShot(PieceDestroyedSnd);
+    }
+
+    public void PlayPieceMovedSound()
+    {
+        AudioSrc.PlayOneShot(PieceMovedSnd);
+    }
+
+    public void PlayPunchSound()
+    {
+        AudioSrc.PlayOneShot(PunchSnd);
+    }
+
+    public void PlayVictorySound()
+    {
+        AudioSrc.PlayOneShot(VictorySnd);
+    }
+
+    public void PlayEndTurnSound()
+    {
+        AudioSrc.PlayOneShot(EndTurnSnd);
     }
 
 

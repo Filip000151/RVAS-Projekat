@@ -10,6 +10,7 @@ TagManager:
   - TurnText
   - EndText
   - DbManager
+  - MusicPlayer
   layers:
   - Default
   - TransparentFX

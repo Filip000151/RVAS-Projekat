@@ -11,8 +11,12 @@ public class Login : MonoBehaviour
     public string confirmPassword;
     [SerializeField] TMP_InputField c;
 
+    private GameObject MusicPlayer;
+
     public void Start()
     {
+        MusicPlayer = GameObject.FindGameObjectWithTag("MusicPlayer");
+
         if(DatabaseConnector.currentPlayer != null)
         {
             MenuSetter(1);
@@ -26,6 +30,8 @@ public class Login : MonoBehaviour
 
         //provera za username i password
         DataManager.instance.clearErrorMessage();
+
+        MusicPlayer.GetComponent<MusicPlayer>().PlayMenuButtonSound();
 
         errorMessage.text = "";
 
@@ -43,6 +49,7 @@ public class Login : MonoBehaviour
     public void RegisterUser()
     {
         MenuSetter(3);
+        MusicPlayer.GetComponent<MusicPlayer>().PlayMenuButtonSound();
     }
 
     public void Register()
@@ -62,6 +69,8 @@ public class Login : MonoBehaviour
         {
             errorMessage.text = DataManager.instance.errorMessage;
         }
+
+        MusicPlayer.GetComponent<MusicPlayer>().PlayMenuButtonSound();
    
     }
     public void Username(int id)
@@ -89,6 +98,7 @@ public class Login : MonoBehaviour
     public void BackButton()
     {
         MenuSetter();
+        MusicPlayer.GetComponent<MusicPlayer>().PlayMenuButtonSound();
     }
 
 
