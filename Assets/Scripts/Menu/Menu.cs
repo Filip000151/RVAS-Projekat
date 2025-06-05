@@ -27,7 +27,7 @@ public class Menu : MonoBehaviour
     }
     public void SeeAllScores()
     {
-        mainMenu.SetActive(false);
+        seeScore.SetActive(false);
         allScoresPanel.SetActive(true);
     }
 

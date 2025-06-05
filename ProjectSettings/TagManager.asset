@@ -9,6 +9,7 @@ TagManager:
   - WinnerText
   - TurnText
   - EndText
+  - DbManager
   layers:
   - Default
   - TransparentFX
